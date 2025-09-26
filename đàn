@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Piano Online</title>
+  <style>
+    body { text-align: center; font-family: sans-serif; }
+    .piano { display: flex; justify-content: center; margin-top: 50px; }
+    .key {
+      width: 60px; height: 200px; margin: 1px;
+      border: 1px solid black; background: white;
+      display: flex; align-items: flex-end; justify-content: center;
+      cursor: pointer; user-select: none;
+    }
+    .key:active { background: #ddd; }
+  </style>
+</head>
+<body>
+  <h1>🎹 Piano Online</h1>
+  <div class="piano">
+    <div class="key" data-note="C">C</div>
+    <div class="key" data-note="D">D</div>
+    <div class="key" data-note="E">E</div>
+    <div class="key" data-note="F">F</div>
+    <div class="key" data-note="G">G</div>
+    <div class="key" data-note="A">A</div>
+    <div class="key" data-note="B">B</div>
+  </div>
+
+  <script>
+    const notes = {
+      C: "https://piano-sounds.s3.us-east-2.amazonaws.com/C.mp3",
+      D: "https://piano-sounds.s3.us-east-2.amazonaws.com/D.mp3",
+      E: "https://piano-sounds.s3.us-east-2.amazonaws.com/E.mp3",
+      F: "https://piano-sounds.s3.us-east-2.amazonaws.com/F.mp3",
+      G: "https://piano-sounds.s3.us-east-2.amazonaws.com/G.mp3",
+      A: "https://piano-sounds.s3.us-east-2.amazonaws.com/A.mp3",
+      B: "https://piano-sounds.s3.us-east-2.amazonaws.com/B.mp3"
+    };
+
+    document.querySelectorAll(".key").forEach(key => {
+      key.addEventListener("click", () => {
+        const note = key.dataset.note;
+        const audio = new Audio(notes[note]);
+        audio.play();
+      });
+    });
+  </script>
+</body>
+</html>
